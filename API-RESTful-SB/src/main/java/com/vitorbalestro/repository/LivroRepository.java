@@ -1,5 +1,6 @@
 package com.vitorbalestro.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -25,6 +26,8 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
     )
 	Page<Livro> recuperarLivrosPaginados(Pageable pageable);
 	
+	@Query("select l from Livro l left join fetch l.categoria where l.categoria.id = :id")
+    List<Livro> findByCategoriaId(Long id);
 	
 }
 

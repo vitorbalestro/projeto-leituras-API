@@ -68,6 +68,11 @@ public class LivroController {
     	
     	return livrosPaginados;
     }
+
+	@GetMapping("categoria/{idCategoria}")
+	public List<Livro> recuperarLivrosPorCategoria(@PathVariable("idCategoria") Long id) {
+	    return livroService.recuperarLivrosPorCategoria(id);
+	}
     
     
 }

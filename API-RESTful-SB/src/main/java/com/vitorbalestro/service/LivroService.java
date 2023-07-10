@@ -43,5 +43,9 @@ public class LivroService {
     public Page<Livro> recuperarLivrosPaginados(Pageable pageable){
     	return livroRepository.recuperarLivrosPaginados(pageable);
     }
+
+    public List<Livro> recuperarLivrosPorCategoria(Long id) {
+	    return livroRepository.findByCategoriaId(id);
+	}
     
 }

@@ -1,13 +1,17 @@
 package com.vitorbalestro.model;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -27,10 +31,14 @@ public class Livro {
     @NotEmpty(message = "O nome do autor deve ser informado.")
     private String autor;
     
-    
-    public Livro(String nome, String autor) {
+    @ManyToOne(cascade=CascadeType.REMOVE)
+	@OnDelete(action = OnDeleteAction.CASCADE) 
+	private Categoria categoria;
+
+    public Livro(String nome, String autor, Categoria categoria) {
         this.nome = nome;
         this.autor = autor;
+		this.categoria = categoria;
     }
     
  
@@ -62,6 +70,13 @@ public class Livro {
 		this.autor = autor;
 	}
 	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 	
 
 	
