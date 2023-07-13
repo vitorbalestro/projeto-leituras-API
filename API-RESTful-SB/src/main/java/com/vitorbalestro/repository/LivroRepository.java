@@ -28,6 +28,9 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 	
 	@Query("select l from Livro l left join fetch l.categoria where l.categoria.id = :id")
     List<Livro> findByCategoriaId(Long id);
+
+	@Query("delete from Livro l where l.id = :id")
+	void deleteByIdV2(Long id);
 	
 }
 

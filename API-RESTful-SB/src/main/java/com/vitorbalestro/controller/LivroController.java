@@ -50,8 +50,8 @@ public class LivroController {
     }
 
     @DeleteMapping("{idLivro}")  
-    public void removerLivro(@PathVariable("idLivro") Long id) {
-        livroService.removerLivro(id);
+    public void removerLivroV2(@PathVariable("idLivro") Long id) {
+        livroService.removerLivroV2(id);
     }
     
     @GetMapping("paginacao")

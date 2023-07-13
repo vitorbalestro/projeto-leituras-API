@@ -35,6 +35,11 @@ public class LivroService {
         recuperarLivroPorId(id);
         livroRepository.deleteById(id);
     }
+
+    public void removerLivroV2(Long id) {
+        recuperarLivroPorId(id);
+        livroRepository.deleteByIdV2(id);
+    }
         
     public Livro atualizarLivro(Livro livro) {        
         return livroRepository.save(livro);
