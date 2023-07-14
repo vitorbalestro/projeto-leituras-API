@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -29,8 +30,9 @@ public interface LivroRepository extends JpaRepository<Livro, Long> {
 	@Query("select l from Livro l left join fetch l.categoria where l.categoria.id = :id")
     List<Livro> findByCategoriaId(Long id);
 
-	@Query("delete from Livro l where l.id = :id")
-	void deleteByIdV2(Long id);
+	@Modifying
+	@Query("delete from Livro l where l.id=:id")
+	void deleteByIdV2(@Param("id") Long id);
 	
 }
 

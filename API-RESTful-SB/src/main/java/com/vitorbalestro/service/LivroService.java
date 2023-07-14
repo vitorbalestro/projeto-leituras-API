@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vitorbalestro.exception.EntidadeNaoEncontradaException;
 import com.vitorbalestro.model.Livro;
@@ -36,6 +37,7 @@ public class LivroService {
         livroRepository.deleteById(id);
     }
 
+    @Transactional
     public void removerLivroV2(Long id) {
         recuperarLivroPorId(id);
         livroRepository.deleteByIdV2(id);
